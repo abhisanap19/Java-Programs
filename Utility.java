@@ -39,42 +39,48 @@ public class Utility
 	*/
 	
 	 public static void flipcoin() {
+		 
+		 System.out.println("Enter no. of times u want to flip coin: ");
+		 int n=sc.nextInt();
+		 int head=0,tail=0;
+		 
+		 if(n>0){
+			 double[] result=new double[n];
+			 
+			 for(int i=0;i<n;i++) {
+				 
+				 result[i]=Math.random();
+				 
+				 if(result[i]<0.5) {
+					 
+					 System.out.println("tails");
+					 tail++;
+					 
+				 }
+				 
+				 else {
+					 
+					 System.out.println("heads");
+					 head++;
+					 
+				 }
+				 
+				 
+			 }	 
+			 
+		 
+		 float percentageOfTail=(tail*100)/n;
+		 System.out.println("percentageOfTail"+percentageOfTail);
+		 
+		 float percentageOfHead=(head*100)/n;
+		 System.out.println("percentageOfHead"+percentageOfHead);
 		
-		
-		//flipcoin test = new flipcoin();
-		int choice;	   
-		//System.out.println("Welcome to the coin flip game!");
-
-		do
-		{
-			System.out.println("Enter '1' to Flip Coin OR Enter '0' to Quit: ");
-			Utility u=new Utility();
-			choice = u.inputInteger();
-
-			if (choice == 1)
-			{
-			//	sc.flip();
-			}
-			else if (choice > 1)
-			{
-				System.out.println("Invalid entry - please enter 1 or 0: ");
-				choice = u.inputInteger();
-			}
-		}
-while (choice != 0);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	private int inputInteger() {
-		// TODO Auto-generated method stub
-		return 0;
-	}  */
+		 }
+		 else {
+			 System.err.println("Enter perfect no.");
+			 
+		 }
+	}  
 
 	/**
 	 * Aim: Find whether the given year is Leap Year or not.
@@ -122,7 +128,7 @@ while (choice != 0);
 		while(i<=n) {
 			
 			
-			System.out.println(""+powerOfTwo);
+			System.out.println(i+"\t"+powerOfTwo);
 			powerOfTwo=2*powerOfTwo;
 			i=i+1;
 			
@@ -144,15 +150,154 @@ while (choice != 0);
 		System.out.println("Enter value of N: ");
 			int n = sc.nextInt();
 		      double sum = 0.0;
-		      for (int i = 1; i <= n; i++){
-		          sum += 1.0 / i;
-		      }
-
 		      
-		      System.out.println(sum);
+		      
+		     
+		     for (int i = 1; i <= n; i++){
+		    	  
+		    	 System.out.print("1/"+i+"+");
+		    		  sum += 1.0 / i;  
+		    		  
+		    	  }
+		     	
+		    System.out.print(sum);  
+		         
 		
 	}
+	
+	
+	
+	/**
+	 * Aim: Find prime Factorization of given number.
+	 *@author Abhijeet Sanap
+	 *@version 1.0 
+	 *@since 16-12-2018
+	*/
+	
+	public static void getprimefactor(long number)
+	{
 
+		for(long i=2;i<=number/i;i++){
+		System.out.println("{i="+i+",number="+number+" }");
+
+		while(number%i==0){
+		  number=number/i;
+		   System.out.println("Factor: "+i);
+
+
+		} 
+		}
+
+		 if(number>1){
+		System.out.println("Factor: "+number);
+
+		}
+
+
+		System.out.println();
+
+
+
+
+		}
+	
+	
+	
+	/**
+	 * Aim: Simulates a gambler.
+	 *@author Abhijeet Sanap
+	 *@version 1.0 
+	 *@since 16-12-2018
+	*/
+	
+	public static void gambler() {
+		
+		System.out.println("Enter $stakes: ");
+		int stake=sc.nextInt();
+		
+		System.out.println("Enter $goals: ");
+		int goal=sc.nextInt();
+		
+		System.out.println("Enter no. of trials: ");
+		int trial=sc.nextInt();
+		
+        int bets=0;
+        int wins=0;
+        int loss=0;
+        
+        for(int i=0;i<trial;i++) {
+        	
+        	int cash=stake;
+        	
+        	
+        	while(cash>0 && cash<goal) {
+        		
+        		bets++;
+        		
+        		
+        		if(Math.random()<0.5)
+        			cash++;
+        		else
+        			cash--;
+        			
+        	}
+        	
+        	
+        	
+        	if(cash==goal) {
+        		
+        		wins++;
+        		
+        	}
+        	
+        	else
+        		loss++;
+        	
+        	
+        	
+        }
+        
+        
+        System.out.println(wins + " wins of " + trial);
+        System.out.println("Percent of games won = " + 100.0 * wins / trial+"%");
+        System.out.println(loss + " loss of " + trial);
+        System.out.println("Percent of games loss = " + 100.0 * loss / trial+"%");
+    }	
+	
+	
+	/**
+	 * Aim: Given N distinct Coupon Numbers, how many random numbers do you
+need to generate distinct coupon number? This program simulates this random process.
+	 *@author Abhijeet Sanap
+	 *@version 1.0 
+	 *@since 16-12-2018
+	*/
+	
+	
+	public static int getCoupon(int number) {
+		boolean[] collected=new boolean[number];
+		
+		int iteration=0;
+		int unique=0;
+		
+		while(unique<number) {
+			
+			int random=(int)(Math.random()*number);
+			
+			if(!collected[random]) {
+				
+				unique++;
+				collected[random]=true;
+				
+				
+			}
+			iteration++;
+			
+		}		
+		return iteration;
+		
+	}
+	
 }
 	
 	
